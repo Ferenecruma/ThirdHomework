@@ -1,9 +1,6 @@
 #include <iostream>
 #include <random>
 
-// Function that generates square matrix of integers given its size
-// Input: size of the matrix
-// Output: square matrix of integers
 
 // Function that prints a matrix given its size and the matrix itself
 void print_matrix(int **matrix, int size)
@@ -16,6 +13,7 @@ void print_matrix(int **matrix, int size)
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
 }
 
 void print_matrix(const int **matrix, int size)
@@ -28,46 +26,28 @@ void print_matrix(const int **matrix, int size)
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
 }
 
 
 extern "C"
 {
-    int **generate_matrix(int size)
-    {
-        int **matrix = new int *[size];
-        for (int i = 0; i < size; i++)
-        {
-            matrix[i] = new int[size];
-        }
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                matrix[i][j] = rand() % 10;
-            }
-        }
-        return matrix;
-    }
-
     // Function that performs matrix multiplication given two matrices.
     // The function should be able to accept square matrices of any size.
-    int **matrix_multiply(const int **matrix_a, const int **matrix_b, int **matrix_c, const int size)
+    int **matrix_multiply(const int **matrix_a, const int **matrix_b, const int size)
     {
-        print_matrix(matrix_a, size);
-        print_matrix(matrix_b, size);
-
+        int** matrix_c = new int*[size];
+     
         for (int i = 0; i < size; i++)
-        {
+            matrix_c[i] = new int[size];
+        
+        for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
             {
+                matrix_c[i][j] = 0;
                 for (int k = 0; k < size; k++)
-                {
                     matrix_c[i][j] += matrix_a[i][k] * matrix_b[k][j];
-                }
             }
-        }
-        print_matrix(matrix_c, size);
         return matrix_c;
     }
 

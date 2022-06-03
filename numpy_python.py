@@ -3,9 +3,6 @@ import numpy as np
 from utils import time_f
 
 
-MATRIX_SIZE = 10000
-
-
 # Generate matrix with random integers
 def generate_matrix(size: int) -> np.ndarray:
     matrix = np.random.randint(0, 10, (size, size))
@@ -34,21 +31,13 @@ def apply_threshold(matrix: np.ndarray, threshold: int, value: int = 1) -> np.nd
 
 
 @time_f
-def main():
-    A, B = generate_matrix(MATRIX_SIZE), generate_matrix(MATRIX_SIZE)
-
+def main(matrix_size: int):
+    A, B = generate_matrix(matrix_size), generate_matrix(matrix_size)
+    
     C = matrix_multiply(A, B)
-    pretty_print(C)
-
     D = apply_threshold(C, 200, 0)
-    pretty_print(D)
-
     E = apply_threshold(C, 200, 1)
-    pretty_print(E)
-
     F = matrix_add(D, E)
-    pretty_print(F)
-
 
 if __name__ == '__main__':
-    main()
+    main(100)

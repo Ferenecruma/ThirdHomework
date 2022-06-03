@@ -62,21 +62,13 @@ def apply_threshold(matrix, threshold, value=1):
 
 
 @time_f
-def main():
-    A, B  = generate_matrix(MATRIX_SIZE), generate_matrix(MATRIX_SIZE)
+def main(matrix_size):
+    A, B  = generate_matrix(matrix_size), generate_matrix(matrix_size)
 
     C = matrix_multiply(A, B)
-    pretty_print(C)
-
     D = apply_threshold(C, 200, 0)
-    pretty_print(D)
-
     E = apply_threshold(C, 200, 1)
-    pretty_print(E)
-
     F = matrix_add(D, E)
-    pretty_print(F)
-
 
 if __name__ == "__main__":
-    main()
+    main(1000)
